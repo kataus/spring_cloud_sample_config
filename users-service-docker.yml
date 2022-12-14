@@ -1,0 +1,36 @@
+spring:
+  application.name: users-service
+  datasource:
+    url: jdbc:postgresql://postgres:5432/otus
+    username: otus
+    password: otus123
+
+  liquibase:
+    enabled: true
+    change-log: liquibase/all_migrations.groovy
+
+server.error.include-message: always
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${app.eureka-server}:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoint.health.show-details: "ALWAYS"
+  endpoints.web.exposure.include: "*"
+
+
+server.port: 8080
+
+app.eureka-server: eureka
